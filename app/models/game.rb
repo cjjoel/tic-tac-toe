@@ -34,7 +34,7 @@ class Game
     if @winner || draw?
       @moves = {}
     else
-      position = Random.rand(9)
+      position = ComputerMoveService.new(self, @computer, @player).process
       @board[position] = @computer
       moves[:computer] = {
         character: @computer,

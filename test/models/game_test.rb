@@ -32,4 +32,11 @@ class GameTest < ActiveSupport::TestCase
     @game.make_player_move(3)
     assert_equal Constants::X, @game.board[3]
   end
+
+  def test_should_make_perfect_computer_move
+    @game.board[0] = Constants::O
+    @game.board[1] = @game.board[4] = Constants::X
+    @game.make_computer_move
+    assert_equal Constants::O, @game.board[7]
+  end
 end
