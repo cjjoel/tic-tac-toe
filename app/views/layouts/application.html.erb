@@ -12,7 +12,10 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <div class="flex justify-center items-center h-20 bg-indigo-700">
+      <%= link_to "Tic Tac Toe", root_path, class: "text-white text-3xl" %>
+    </div>
+    <main class="container mx-auto mt-28 px-5 flex flex-col justify-center items-center">
       <%= yield %>
     </main>
   </body>

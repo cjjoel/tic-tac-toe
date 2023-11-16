@@ -1,0 +1,36 @@
+<% if @game.moves[:player] %>
+  <turbo-stream action="replace" target=<%= @game.moves[:player][:cell_id] %> >
+    <template>
+        <button id=<%= @game.moves[:player][:cell_id] %> class="w-20 h-20" disabled="true">
+          <%= @game.player %>
+        </button>
+    </template>
+  </turbo-stream>
+<% end %>
+
+<% if @game.moves[:computer] %>
+  <turbo-stream action="replace" target=<%= @game.moves[:computer][:cell_id] %> %>
+    <template>
+        <button id=<%= @game.moves[:computer][:cell_id] %> class="w-20 h-20" disabled="true">
+          <%= @game.computer %>
+        </button>
+    </template>
+  </turbo-stream>
+<% end %>
+
+<% if @game.winner || @game.draw? %>
+  <turbo-stream action="replace" target="board">
+    <template>
+      <%= render partial: "board", locals: { game: @game, disabled: true } %>
+    </template>
+  </turbo-stream>
+
+  <turbo-stream action="after" target="board">
+    <template>
+      <div class="text-2xl pt-6">
+        <%= @game.winner ? "#{@game.winner} wins! " : "Draw! " %>
+        <%= link_to "Try again.", root_path, class: "underline" %>
+      </div>
+    </template>
+  </turbo-stream>
+<% end %>

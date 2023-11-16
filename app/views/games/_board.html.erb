@@ -1,0 +1,7 @@
+<div class="grid grid-cols-3 bg-black gap-0.5 border-2 border-black mx-auto" id="board">
+  <% Constants::BOARD_SIZE.times do |position| %>
+    <div class="flex justify-center items-center">
+      <%= button_to game.board[position] || "", { action: "update" }, { id: "cell_#{position}", method: :patch, data: { turbo_stream: "true" }, params: { game: { position: position } }, class: "w-20 h-20", form_class: "w-20 h-20 bg-white text-4xl", disabled: disabled } %>
+    </div>
+  <% end %>
+</div>
