@@ -1,0 +1,28 @@
+jobs:
+  build:
+    # No. of servers/machines
+    parallelism: 1
+    docker:
+      - image: cimg/ruby:3.2.2
+
+    # application directory change it with your application directory name
+    working_directory: ~/tic-tac-toe
+    environment:
+      RAILS_ENV: "test"
+
+    steps:
+      - checkout
+      - run: gem install bundler:2.4.19
+      # Bundle install
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      # Ensure Rubocop has linted all Ruby files
+      - run: bundle exec rubocop
+      # Unit tests
+      - run:
+          shell: /bin/bash
+          command: bundle exec rails t -v
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
