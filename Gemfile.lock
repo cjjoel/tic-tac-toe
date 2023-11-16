@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/Shopify/erb-lint.git
+  revision: 6448416d904b3d23135de50f946b4c2964590765
+  branch: main
+  specs:
+    erb_lint (0.5.0)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop
+      smart_properties
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,6 +80,13 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     ast (2.4.2)
+    better_html (2.0.2)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
@@ -186,6 +206,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.13.0)
+    smart_properties (1.17.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -223,6 +244,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  erb_lint!
   importmap-rails
   jbuilder
   puma (~> 5.0)
