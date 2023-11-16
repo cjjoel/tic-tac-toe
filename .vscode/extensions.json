@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "kaiwood.endwise",
+    "Shopify.ruby-lsp",
+    "redhat.vscode-yaml",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "CraigMaslowski.erb"
+  ]
+}
