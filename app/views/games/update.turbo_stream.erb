@@ -28,8 +28,8 @@
   <turbo-stream action="after" target="board">
     <template>
       <div class="text-2xl pt-6">
-        <%= @game.winner ? "#{@game.winner} wins! " : "Draw! " %>
-        <%= link_to "Try again.", root_path, class: "underline" %>
+        <%= @game.winner ? t("wins", entity: @game.winner) : t("draw") %>
+        <%= link_to t("try_again"), root_path, class: "underline" %>
       </div>
     </template>
   </turbo-stream>

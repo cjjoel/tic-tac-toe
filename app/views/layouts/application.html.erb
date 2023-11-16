@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TicTacToe</title>
+    <title><%= t("tic_tac_toe") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +13,7 @@
 
   <body>
     <div class="flex justify-center items-center h-20 bg-indigo-700">
-      <%= link_to "Tic Tac Toe", root_path, class: "text-white text-3xl" %>
+      <%= link_to t("tic_tac_toe"), root_path, class: "text-white text-3xl" %>
     </div>
     <main class="container mx-auto mt-28 px-5 flex flex-col justify-center items-center">
       <%= yield %>

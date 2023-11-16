@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+  tic_tac_toe: "Tic Tac Toe"
+  wins: "%{entity} wins!"
+  draw: "Draw!"
+  try_again: " Try again."
+  form:
+    player_turn: "Who plays first?"
+    first_turn: "I start first"
+    second_turn: "Opponent starts first"
+    player: "Choose your character"
+    play: "Play"
+    reset: "Reset"
