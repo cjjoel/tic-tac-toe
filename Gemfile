@@ -68,6 +68,9 @@ group :development do
 
   # For linting ERB files
   gem "erb_lint", require: false, git: "https://github.com/Shopify/erb-lint.git", branch: "main"
+
+  # Step-by-step debugging and stack navigation in Pry
+  gem "pry-byebug"
 end
 
 group :test do
