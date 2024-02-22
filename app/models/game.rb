@@ -11,7 +11,7 @@ class Game
   def initialize(attributes = {})
     @player = attributes[:player]
     @player_turn = attributes[:player_turn]
-    @computer = @player == Constants::X ? Constants::O : Constants::X
+    @computer = Constants::PLAYER_DETAILS[@player]&.[](:opponent)
     @board = Array.new(Constants::BOARD_SIZE)
     @moves = {}
     @winner = nil
@@ -34,7 +34,7 @@ class Game
     if @winner || draw?
       @moves = {}
     else
-      position = ComputerMoveService.new(self, @computer, @player).process
+      position = ComputerMoveService.new(self, @computer).process
       @board[position] = @computer
       moves[:computer] = {
         character: @computer,

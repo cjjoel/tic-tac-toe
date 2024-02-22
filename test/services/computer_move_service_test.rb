@@ -12,7 +12,7 @@ class ComputerMoveServiceTest < ActiveSupport::TestCase
   def test_should_return_perfect_move
     @game.board[0] = Constants::O
     @game.board[1] = @game.board[4] = Constants::X
-    computer_move_service = ComputerMoveService.new(@game, @computer, @player)
+    computer_move_service = ComputerMoveService.new(@game, @computer)
     move = computer_move_service.process
     assert_equal 7, move
   end

@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
 class ComputerMoveService
-  def initialize(game, computer, player)
+  def initialize(game, computer)
     @game = game
     @computer = computer
-    @player = player
   end
 
   def process
-    best_score = @computer == Constants::O ? -Float::INFINITY : Float::INFINITY
-    operator = @computer == Constants::O ? :< : :>
-    0.upto(Constants::BOARD_SIZE - 1).reduce([best_score, 0]) do |best_position, index|
+    opponent, worst_score, extremum = Constants::PLAYER_DETAILS[@computer].values
+    0.upto(Constants::BOARD_SIZE - 1).reduce([worst_score, 0]) do |best_position, index|
       next best_position if @game.board[index]
 
       @game.board[index] = @computer
-      score = minimax(@player)
+      score = minimax(opponent)
       @game.board[index] = nil
-      should_update_score = best_position.first.method(operator).call(score)
-      should_update_score ? [score, index] : best_position
+      [[score, index], best_position].method(extremum).call(&:first)
     end.second
   end
 
@@ -28,26 +25,14 @@ class ComputerMoveService
       return -10 if @game.wins?(Constants::X)
       return 0 if @game.draw?
 
-      if player == Constants::O
-        return 0.upto(Constants::BOARD_SIZE - 1).reduce(-Float::INFINITY) do |max_score, index|
-          next max_score if @game.board[index]
+      opponent, worst_score, extremum = Constants::PLAYER_DETAILS[player].values
+      0.upto(Constants::BOARD_SIZE - 1).reduce(worst_score) do |best_score, index|
+        next best_score if @game.board[index]
 
-          @game.board[index] = Constants::O
-          score = minimax(Constants::X)
-          @game.board[index] = nil
-          [max_score, score].max
-        end
-      end
-
-      if player == Constants::X
-        0.upto(Constants::BOARD_SIZE - 1).reduce(Float::INFINITY) do |min_score, index|
-          next min_score if @game.board[index]
-
-          @game.board[index] = Constants::X
-          score = minimax(Constants::O)
-          @game.board[index] = nil
-          [min_score, score].min
-        end
+        @game.board[index] = player
+        score = minimax(opponent)
+        @game.board[index] = nil
+        [score, best_score].method(extremum).call(&:itself)
       end
     end
 end
