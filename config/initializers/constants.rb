@@ -18,4 +18,7 @@ module Constants
       extremum: :max_by
     }
   }
+  POINTS_IF_O_WINS = 10
+  POINTS_IF_X_WINS = -10
+  POINTS_FOR_DRAW = 0
 end

@@ -21,9 +21,9 @@ class ComputerMoveService
   private
 
     def minimax(player)
-      return 10 if @game.wins?(Constants::O)
-      return -10 if @game.wins?(Constants::X)
-      return 0 if @game.draw?
+      return Constants::POINTS_IF_O_WINS if @game.wins?(Constants::O)
+      return Constants::POINTS_IF_X_WINS if @game.wins?(Constants::X)
+      return Constants::POINTS_FOR_DRAW if @game.draw?
 
       opponent, worst_score, extremum = Constants::PLAYER_DETAILS[player].values
       0.upto(Constants::BOARD_SIZE - 1).reduce(worst_score) do |best_score, index|
